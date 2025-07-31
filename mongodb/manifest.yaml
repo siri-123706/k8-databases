@@ -36,11 +36,12 @@ spec:
 ports:
 - protocol: TCP
   port: 27017
-  targetport: 27017
+  targetPort: 27017
 ---
 apiVersion: apps/v1 
 kind: StatefulSet
 metadata: 
+   name: mongodb
    namespace: roboshop
    labels:
      component: mongodb
@@ -61,7 +62,7 @@ spec:
            project: roboshop
            tier: database
      spec:
-       container:
+       containers:
        - name: mongodb
          image: shirisha104/mongodb:v1
          volumeMounts:
@@ -72,7 +73,7 @@ spec:
      - metadata: 
           name: mongodb-data
        spec:
-       accessModes:
+       accessModes: ["ReadWriteOnce"]
        storageClassName: "roboshop-ebs"
        resources:
          requests:
