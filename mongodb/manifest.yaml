@@ -8,8 +8,8 @@ metadata:
      component: mongodb
      project: roboshop
      tier: database
-spec:
-    clusterIP: None
+spec: 
+    clusterIP: None # if cluster ip is none i.e headless service
     selector:
       component: mongodb
       project: roboshop
@@ -49,11 +49,11 @@ metadata:
     tier: database
 spec:
    selector: 
-     matachLabels: # has to match spec, template, metadata.labels
+     matchLabels: # has to match spec, template, metadata.labels
        component: mongodb
        project: roboshop
        tier: database
-   ServiceName: "mongodb-headless" # this should be headless service
+   serviceName: "mongodb-headless" # this should be headless service
    replicas: 3
    template: # this is pod definition
      metadata:
